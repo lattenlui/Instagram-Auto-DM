@@ -8,7 +8,6 @@ from selenium.webdriver import ChromeOptions
 
 link = 'https://hiftie.xyz/'
 
-
 options = ChromeOptions()
 options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=options)
