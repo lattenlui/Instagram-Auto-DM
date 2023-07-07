@@ -9,8 +9,23 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-# Unless already created -> mycursor.execute("CREATE DATABASE accounts")
-# Unless already created -> mycursor.execute("CREATE TABLE creds (name VARCHAR(255), passwd VARCHAR(255), plan VARCHAR(255))")
+# Unless already created -> 
+# mycursor.execute("CREATE DATABASE accounts")
 
-insert_sql = "INSERT INTO creds (name, passwd, plan) VALUES (%s, %s, %s)"
-acc_val = ("test", "t3st", 'basic')
+# Delete table -> 
+# mycursor.execute("DROP TABLE creds")
+
+# Unless already created -> 
+mycursor.execute("CREATE TABLE creds (name VARCHAR(255), passwd VARCHAR(255), plan VARCHAR(255))")
+
+
+
+print(mycursor.rowcount, "record inserted.")
+
+
+acc_val = ("test", "pass", 'basic')
+
+mycursor.execute("INSERT INTO creds (name, passwd, plan) VALUES (%s, %s, %s)", acc_val)
+mycursor.execute("SHOW TABLE creds")
+
+mydb.commit()
