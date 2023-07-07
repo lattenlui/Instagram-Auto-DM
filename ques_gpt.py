@@ -14,7 +14,6 @@ def askGPT(question, info):
     messages=[
             {"role": "system", "content": "You are a" + info},
             {"role": "user", "content": question},
-
         ]
     )
 
