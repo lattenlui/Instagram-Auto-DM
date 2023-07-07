@@ -7,17 +7,15 @@ from selenium.webdriver import Chrome
 from selenium.webdriver import ChromeOptions
 
 link = 'https://www.randomlists.com/email-addresses'
-
 options = ChromeOptions()
 options.add_argument("--headless=new")
 driver = webdriver.Chrome(options=options)
-response = requests.get(link)
-soup = BeautifulSoup(response.content, 'lxml')
-driver.get(link)
-html = driver.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
 
 # Get Contact Information and remove duplticates
-def getContact(html):
+def getContact(link):
+
+    driver.get(link)
+    html = driver.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
 
     def getEmail():
         email_pattern = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,4}"
@@ -32,6 +30,6 @@ def getContact(html):
 
     return Email #, Phone
 
-Contact = getContact(html)
+Contact = getContact(link)
 
 print(Contact)
