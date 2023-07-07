@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver import ChromeOptions
 
-link = 'https://hiftie.xyz/'
+link = 'https://www.randomlists.com/email-addresses'
 
 options = ChromeOptions()
 options.add_argument("--headless=new")
@@ -15,7 +15,6 @@ response = requests.get(link)
 soup = BeautifulSoup(response.content, 'lxml')
 driver.get(link)
 html = driver.execute_script("return document.getElementsByTagName('html')[0].innerHTML")
-print(html)
 
 # Get Contact Information and remove duplticates
 def getContact(html):
@@ -33,6 +32,6 @@ def getContact(html):
 
     return Email #, Phone
 
-Contact = getContact(soup)
+Contact = getContact(html)
 
 print(Contact)
