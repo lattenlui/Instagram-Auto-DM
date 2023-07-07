@@ -1,12 +1,11 @@
 import openai
 
-openai.api_key = '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'
 
 info = 'developer who programs in python, can do meetings between 9am - 5pm ist'
-
 question = "which time can we have a meeting?"
 
-
+# Change this :) 
+openai.api_key = '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'
 def askGPT(question, info):
     
     response = openai.ChatCompletion.create(
