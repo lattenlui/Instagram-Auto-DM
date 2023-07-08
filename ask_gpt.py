@@ -1,12 +1,15 @@
 import openai
 
-
-info = 'developer who programs in python, can do meetings between 9am - 5pm ist'
+# TODO fetch from mail/sms/database
 question = "which time can we have a meeting?"
+msgHistory = []
 
 # Change this :) 
 openai.api_key = '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'
-def askGPT(question, info):
+
+info = "employee from agency which helps fitness trainers get more clients by performing advertisements for them.This Agency Is an online Marketing Agency, we provide Facebook and instagram ads. We work with Fitness Coaches and Online trainers and sometimes gyms, and we Get them More Clients and revenue through ads! Our Outreach methods outreach through Instagram, Facebook, Email, Linkedin and cold calling. The agency you work in has helped over 100 trainers by getting them thousands of clients. You can have meetings between"
+# Don't use this, use reply function below in most cases!
+def askGPT(question):
     
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -15,11 +18,17 @@ def askGPT(question, info):
             {"role": "user", "content": question},
         ]
     )
+    responseGPT = response.choices[0].message["content"]
+    msgHistory.append(responseGPT)
+    return responseGPT
 
-    return response.choices[0].message["content"]
+def subjectGPT(message):
+    return askGPT("write an email subject for the message below \n" + message)
 
+def reply(msgHistory, question):
+    return askGPT(str(msgHistory) + question)
 
-
-replyGPT = askGPT(question, info)
-
+replyGPT = askGPT('how many clients have you helped?')
 print(replyGPT)
+sub = subjectGPT(replyGPT)
+print(sub)

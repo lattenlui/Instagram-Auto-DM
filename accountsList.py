@@ -19,7 +19,6 @@ mycursor = mydb.cursor()
 # mycursor.execute("CREATE TABLE creds (name VARCHAR(255), passwd VARCHAR(255), plan VARCHAR(255))")
 
 
-
 print(mycursor.rowcount, "record inserted.")
 
 
@@ -70,3 +69,6 @@ def createAccount(username, passwd, plan):
 
   else:
     return "Some Error while creating account. Please report."
+
+
+

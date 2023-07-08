@@ -15,7 +15,7 @@ smtp_ssl_port = 465
 SERVER = 'imap.gmail.com'
 
 
-def send_mail(mail_message, subject, to_addrs):
+def sendMail(mail_message, subject, to_addrs):
     from_addr = username
     if not isinstance(to_addrs, list):
         list(to_addrs)
@@ -33,7 +33,7 @@ def send_mail(mail_message, subject, to_addrs):
 
 
 
-def get_mail():
+def getMail():
     mail = imaplib.IMAP4_SSL(SERVER)
     mail.login(username, password)
     mail.select('inbox')
