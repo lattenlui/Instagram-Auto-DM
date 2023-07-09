@@ -76,6 +76,3 @@ def getMail():
     return all_emails
 # send_mail('hello', 'subject', 'blackyshhi@gmail.com')
 
-
-
-
