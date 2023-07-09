@@ -1,13 +1,14 @@
 import openai
 
 # TODO fetch from mail/sms/database
-question = "which time can we have a meeting?"
 msgHistory = []
+
+calendy_link = ''
 
 # Change this :) 
 openai.api_key = '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'
 
-info = "employee from agency which helps fitness trainers get more clients by performing advertisements for them.This Agency Is an online Marketing Agency, we provide Facebook and instagram ads. We work with Fitness Coaches and Online trainers and sometimes gyms, and we Get them More Clients and revenue through ads! Our Outreach methods outreach through Instagram, Facebook, Email, Linkedin and cold calling. The agency you work in has helped over 100 trainers by getting them thousands of clients. You can have meetings between"
+info = "employee from agency which helps fitness trainers get more clients by performing advertisements for them.This Agency Is an online Marketing Agency, we provide Facebook and instagram ads. We work with Fitness Coaches and Online trainers and sometimes gyms, and we Get them More Clients and revenue through ads! Our Outreach methods outreach through Instagram, Facebook, Email, Linkedin and cold calling. The agency you work in has helped over 100 trainers by getting them thousands of clients. You can book a meeting with us using the calendy app at this link: {calendy_link}"
 # Don't use this, use reply function below in most cases!
 def askGPT(question):
     
@@ -28,7 +29,3 @@ def subjectGPT(message):
 def reply(msgHistory, question):
     return askGPT(str(msgHistory) + question)
 
-replyGPT = askGPT('how many clients have you helped?')
-print(replyGPT)
-sub = subjectGPT(replyGPT)
-print(sub)

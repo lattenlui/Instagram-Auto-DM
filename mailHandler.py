@@ -3,11 +3,11 @@ import smtplib
 from email.mime.text import MIMEText
 import imaplib
 import email
-
+import re
 
 # Gmail Username and Password for emails:
 username = 'b.sajras21@gmail.com'
-password = 'no '
+password = 'gglmehzwxjonsjsg'
 
 # Using gmail to send emails.
 smtp_ssl_host = 'smtp.gmail.com'
@@ -15,7 +15,11 @@ smtp_ssl_port = 465
 
 # Fetching gmails's emails
 SERVER = 'imap.gmail.com'
-
+def getEmail(text):
+    email_pattern = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,4}"
+    emails = re.findall(email_pattern, str(text))
+    emails = [*set(emails)]
+    return emails
 
 def sendMail(mail_message, subject, to_addrs):
     from_addr = username
@@ -77,4 +81,24 @@ def getMail():
                 all_emails.append(this)
     return all_emails
 # send_mail('hello', 'subject', 'blackyshhi@gmail.com')
+
+def cleanMail():
+    get_mail = getMail()
+    cleaned_mail = []
+    for mail in get_mail:
+        mail[0] = getEmail(mail[0])
+        for email in mail[0]:
+            if email == username:
+                mail[0].remove(email)
+
+        print(str(mail[2]))
+    
+        
+        cleaned_mail.append(mail[2])
+    
+    # print(cleaned_mail)
+    return cleaned_mail
+
+
+cleanMail()
 

@@ -1,14 +1,24 @@
 from instagpy import InstaGPy
 import instaloader
+from mailHandler import sendMail
+from ask_gpt import askGPT
+from ask_gpt import subjectGPT
 
 # Is Instagram account getting banned? Refer -> https://github.com/iSarabjitDhiman/InstaGPy/blob/master/instagpy/docs/docs.md
 
 # Instagram credentials for extracting contact information (REQUIRED)
 usrname = ''
 passwd = ''
-
+sentList = []
 insta = InstaGPy()
 insta.login(username=usrname, password=passwd)
+    
+def getEmail(text):
+    email_pattern = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,4}"
+    emails = re.findall(email_pattern, str(text))
+    emails = [*set(emails)]
+    return emails
+
 
 def usrValid(userid):
 
@@ -48,9 +58,6 @@ def getPosts(tag):
     
     return post_owners
 
-
-getPosts('fitness')
-
 def getContact():
     tag = ['fitness', 'health', 'gym']
     contacts = []
@@ -60,3 +67,18 @@ def getContact():
         contacts.append(contact)
 
     return contacts
+
+
+def emails():
+    contacts = getContact()
+    for contact in contacts:
+        mail = getEmail(str(contact))
+
+        if mail:
+            if mail not in sentList:
+                sendMail(to_addrs=mail, 
+                subject='Get Clients for your job.', 
+                mail_message='Hi, I am Jermy. I am from a agency which fitness trainers find more clients by running advertisements for them.  If you are interested in getting more clients, you can book a meeting with us.'
+            )
+            sentList.append(sentList)
+
