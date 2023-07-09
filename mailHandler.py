@@ -5,7 +5,7 @@ import imaplib
 import email
 # Gmail Username and Password for emails:
 username = 'b.sajras21@gmail.com'
-password = 'qpwgiorvmobwrgze'
+password = 'no '
 
 # Using gmail to send emails.
 smtp_ssl_host = 'smtp.gmail.com'
@@ -76,3 +76,4 @@ def getMail():
     return all_emails
 # send_mail('hello', 'subject', 'blackyshhi@gmail.com')
 
+print(getMail())
