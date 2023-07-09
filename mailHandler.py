@@ -75,12 +75,7 @@ def getMail():
                 all_emails.append(this)
     return all_emails
 # send_mail('hello', 'subject', 'blackyshhi@gmail.com')
-all_mail = get_mail()
 
-for i in all_mail:
-    for j in i:
-        print(j + '\n')
-    
-    print("\n \n \n \n")
+
 
 

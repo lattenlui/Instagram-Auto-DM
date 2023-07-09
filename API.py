@@ -1,17 +1,20 @@
 from flask import Flask, jsonify, request
 import flask
+from mailHandler import getMail
 
 app = Flask(__name__)
 #Flask Port number
-port = 5000
+port = 5005
+
 
 
 @app.route('/mails', methods = ['GET', 'POST'])
 def mail():
     if(request.method == 'GET'):
-  
+        data = []
         # sending email list logic below
-        data = "hello world"
+        for mail in getMail():
+            data.append(mail)
 
         return data
 
