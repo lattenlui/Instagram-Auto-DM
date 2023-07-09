@@ -15,7 +15,6 @@ def usrValid(userid):
     L = instaloader.Instaloader()
     username = instaloader.Profile.from_id(L.context, userid).username
 
-
     try:
         usrInfo = insta.get_user_info(username)
         followers = usrInfo['data']['user']['edge_followed_by']['count']
@@ -39,11 +38,25 @@ def getUsrInfo(username):
 
 
 def getPosts(tag):
-    all_posts = insta.get_hashtag_posts(tag,total=10)
-    for post in all_posts:
-        post_owner = post['node']['owner']['id']
-        if usrValid(post_owner):
-            print(post_owner)
+    post_owners = []
+    for tags in tag:
+        all_posts = insta.get_hashtag_posts(tag,total=10)
+        for post in all_posts:
+            post_owner = post['node']['owner']['id']
+            if usrValid(post_owner):
+                post_owners.append(post_owner)
+    
+    return post_owners
 
 
 getPosts('fitness')
+
+def getContact():
+    tag = ['fitness', 'health', 'gym']
+    contacts = []
+    post_owners = getPosts(tag)
+    for owner in post_owners:
+        contact = getUsrInfo(owner)
+        contacts.append(contact)
+
+    return contacts

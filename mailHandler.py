@@ -3,6 +3,8 @@ import smtplib
 from email.mime.text import MIMEText
 import imaplib
 import email
+
+
 # Gmail Username and Password for emails:
 username = 'b.sajras21@gmail.com'
 password = 'no '
@@ -76,4 +78,3 @@ def getMail():
     return all_emails
 # send_mail('hello', 'subject', 'blackyshhi@gmail.com')
 
-print(getMail())
