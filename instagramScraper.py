@@ -78,7 +78,7 @@ def emails():
             if mail not in sentList:
                 sendMail(to_addrs=mail, 
                 subject='Get Clients for your job.', 
-                mail_message='Hi, I am Jermy. I am from a agency which fitness trainers find more clients by running advertisements for them.  If you are interested in getting more clients, you can book a meeting with us.'
+                mail_message='Hi, I am Jermy. I am from a agency named NIR which helps fitness trainers find more clients by running advertisements for them. If you are interested in getting more clients, you can book a meeting with us.'
             )
             sentList.append(sentList)
 
