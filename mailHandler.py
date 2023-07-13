@@ -4,11 +4,14 @@ from email.mime.text import MIMEText
 import imaplib
 import email
 import re
+import email_listener
+from ask_gpt import reply
+
 
 # Gmail Username and Password for emails:
 username = 'b.sajras21@gmail.com'
 password = 'gglmehzwxjonsjsg'
-
+mail_folder = 'inbox'
 # Using gmail to send emails.
 smtp_ssl_host = 'smtp.gmail.com'
 smtp_ssl_port = 465
@@ -100,5 +103,14 @@ def cleanMail():
     return cleaned_mail
 
 
-cleanMail()
+def mailReply(smth_idk, mail):
+    print(smth_idk)
+    print(mail)
+
+
+# Always run, replies only doesn't send first.
+def mailListener():
+    el = email_listener.EmailListener(username, password, mail_folder, attachment_dir='./attachments')
+    el.login()
+    el.listen(60, mailReply)
 
