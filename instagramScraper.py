@@ -88,7 +88,10 @@ def validatedOwners(poste):
 vo = validatedOwners(posts)
 print('\n \n \n', vo )
 
-# -------- DIVIDER -------
+
+
+
+# -------- DIVIDER ( Not using anything from here currently, sms/email stuff ) -------
 def getContact():
     tag = ['fitness', 'health', 'gym']
     contacts = []
