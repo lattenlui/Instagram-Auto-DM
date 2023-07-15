@@ -70,8 +70,7 @@ def getPosts(tag):
     return post_owners
 
 
-tag = ['fitness', 'health', 'gym']
-posts = getPosts(tag)
+
 print(posts)
 
 def validatedOwners(poste):
@@ -85,8 +84,22 @@ def validatedOwners(poste):
     return owners
 
             
-vo = validatedOwners(posts)
-print('\n \n \n', vo )
+
+def runOwner(owner):
+    # send first message here :)
+
+    return    
+
+
+
+def forValidOwners():
+    tag = ['fitness', 'health', 'gym']
+    posts = getPosts(tag)
+    vOwners = validatedOwners(posts)
+
+    for owner in validatedOwners():
+        runOwner(owner)
+
 
 
 
