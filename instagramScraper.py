@@ -9,16 +9,14 @@ try:
     shutil.rmtree('config/')
 except: 
     print('no dir config')
-# Is Instagram account getting banned? Refer -> https://github.com/iSarabjitDhiman/InstaGPy/blob/master/instagpy/docs/docs.md
-
-
-
 
 # Instagram credentials for extracting contact information (REQUIRED)
 usrname = 'iblackysh'
 passwd = 'qweiopzxcbnm'
-sentList = []
+delay = 45 # seconds before finding more people. Warning: Lower delay = higher chances of getting acc ban
 
+
+sentList = []
 insta = InstaGPy()
 bot = Bot()
 insta.login(username=usrname, password=passwd, save_session=False)
@@ -69,14 +67,14 @@ def getPosts(tag):
     post_owners = []
 
     for tags in tag:
-        all_posts = insta.get_hashtag_posts(tags, total=10)
+        all_posts = insta.get_hashtag_posts(tags, total=1)
         for post in all_posts:
             try:
                 post_owner = post['node']['owner']['id']
                 post_owners.append(post_owner)
             except:
                 continue
-    
+        time.sleep(delay)
     return post_owners
 
 
@@ -106,15 +104,16 @@ def runOwner(owner):
 
 
 def forValidOwners():
-    tag = ['fitness']
+    tag = ['fitness', 'gym', 'health']
     posts = getPosts(tag)
     vOwners = validatedOwners(posts)
 
     for owner in vOwners:
         runOwner(owner)
 
-
-forValidOwners()
+while True:
+    forValidOwners()
+    time.sleep(delay)
 
 # -------- DIVIDER ( Not using anything from here currently, sms/email stuff ) -------
 '''

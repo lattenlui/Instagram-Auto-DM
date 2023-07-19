@@ -4,8 +4,6 @@ from instagramScraper import bot
 from flask import Flask, request, Response
 from ask_gpt import askGPT
 app = Flask(__name__)
-# Python webhook create
-
 
 def send_reply(uid, msg):
     reply = askGPT(msg)
