@@ -116,6 +116,8 @@ def start():
         forValidOwners()
         time.sleep(delay)
 
+
+
 # -------- DIVIDER ( Not using anything from here currently, sms/email stuff ) -------
 '''
 def getContact():
