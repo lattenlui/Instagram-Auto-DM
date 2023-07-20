@@ -111,9 +111,10 @@ def forValidOwners():
     for owner in vOwners:
         runOwner(owner)
 
-while True:
-    forValidOwners()
-    time.sleep(delay)
+def start():
+    while True:
+        forValidOwners()
+        time.sleep(delay)
 
 # -------- DIVIDER ( Not using anything from here currently, sms/email stuff ) -------
 '''

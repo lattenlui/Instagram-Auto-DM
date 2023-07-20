@@ -37,8 +37,3 @@ def subjectGPT(message):
 
 def reply(msgHistory, question):
     return askGPT(str(msgHistory) + question)
-
-askGPT('how can i get a meeting.`')
-askGPT('how long has your agency has been working for?')
-askGPT('mooo')
-askGPT('rate limit here?')
