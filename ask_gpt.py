@@ -7,7 +7,7 @@ msgHistory = []
 calendy_link = ''
 
 # Change this :) 
-openai.api_key = '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'
+openai.api_key = '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'
 
 info = "employee from agency which helps fitness trainers get more clients by performing advertisements for them.This Agency Is an online Marketing Agency, we provide Facebook and instagram ads. We work with Fitness Coaches and Online trainers and gyms, and we Get them More Clients and revenue through ads! Our Outreach methods outreach through Instagram, Facebook, Email, Linkedin and cold calling. The agency you work in has helped alot of trainers by getting them thousands of clients. You can book a meeting with us using the calendy app at this link: {calendy_link}. "
 # Don't use this, use reply function below in most cases!
