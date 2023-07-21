@@ -10,11 +10,12 @@ def return_response():
     
     data = json.load(request.json)
 
-    # Extract id and msg
-    uid = ''
-    msg = ''
+    # Extract id and msg || REMOVE [0] if doesn't work
+    common = data['entry'][0]['messaging'][0]
+    uid = common['sender']['id']
+    msg = common['message']['text']
 
-    os.system('python3 reply.py ' + uid + ' ' + msg)
+    os.system('python3 reply.py ' + uid + ' "' + msg + '"')
 
     return Response(status=200)
 
