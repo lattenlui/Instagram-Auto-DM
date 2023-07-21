@@ -1,7 +1,10 @@
 import flask
 from flask import Flask, request, Response
+import os
 
 app = Flask(__name__)
+
+port = os.getenv('PORT', 3000)
 
 
 @app.route('/f4c3b00kw3bh00k', methods=['POST'])
@@ -19,5 +22,5 @@ def return_response():
 
     return Response(status=200)
 
-app.run()
+app.run(host='0.0.0.0', port=port)
 
