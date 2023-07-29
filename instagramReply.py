@@ -1,29 +1,10 @@
 import flask
 from flask import Flask, request, Response
-import os
+import os, json, requests
 
 app = Flask(__name__)
 
 port = os.getenv('PORT', 3000)
-
-
-@app.route('/f4c3b00kw3bh00k', methods=['POST'])
-def return_response():
-    print(request.json)
-    
-    data = json.load(request.json)  
-
-    if data == None:
-        return Response(status=200)
-
-    # Extract id and msg || REMOVE [0] if doesn't work
-    common = data['entry'][0]['messaging'][0]
-    uid = common['sender']['id']
-    msg = common['message']['text']
-
-    os.system('python3 reply.py ' + uid + ' "' + msg + '"')
-
-    return Response(status=200)
 
 @app.route('/f4c3b00kw3bh00k', methods=['GET'])
 def webhook_verify():
@@ -32,6 +13,20 @@ def webhook_verify():
         return request.args.get('hub.challenge')
     return "Wrong verify token"
 
+@app.route('/f4c3b00kw3bh00k', methods=['POST'])
+def webhook_action():
+    print('hi')
+    data = json.loads(request.data.decode('utf-8'))  
+    print(data)
+
+    # Extract id and msg
+    common = data['value']
+    uid = common['sender']['id']
+    msg = common['message']['text']
+
+    os.system('python3 reply.py ' + uid + ' "' + msg + '"')
+
+    return Response(response="EVENT RECEIVED", status=200)
 
 app.run(host='0.0.0.0', port=port)
 
