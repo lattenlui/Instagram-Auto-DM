@@ -112,11 +112,12 @@ def forValidOwners():
         runOwner(owner)
 
 def start():
+    print('started \n \n \n \n \n \n \n \n \n \n \n')
     while True:
         forValidOwners()
         time.sleep(delay)
 
-
+start()
 
 # -------- DIVIDER ( Not using anything from here currently, sms/email stuff ) -------
 '''
