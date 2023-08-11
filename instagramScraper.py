@@ -5,18 +5,15 @@ from ask_gpt import subjectGPT
 import time
 import shutil
 
+from var import *
+
 try:
     shutil.rmtree('config/')
 except: 
     print('no dir config')
 
 # Instagram credentials for extracting contact information (REQUIRED)
-usrname = 'iblackysh'
-passwd = 'qweiopzxcbnm'
-delay = 45 # seconds before finding more people. Warning: Lower delay = higher chances of getting acc ban
 
-
-sentList = []
 insta = InstaGPy()
 bot = Bot()
 insta.login(username=usrname, password=passwd, save_session=False)
@@ -33,15 +30,13 @@ def getEmail(text):
 
 
 def usrValid(userid):
-
     userInfo = bot.get_user_info(userid)
-    
 
     try:
         userTh = userInfo
         print(userTh['biography'])
         if userTh['follower_count'] > 100:
-            notGym = askGPT('give yes/no answer on if this could be bio of someone fitness trainer, workout manager, coach, trainer, or related say no if unsure. ' + userTh['biography'])
+            notGym = askGPT( isValidVar + userTh['biography'])
             if notGym.lower() == 'yes':
                 return True
             else:
@@ -94,8 +89,8 @@ def runOwner(owner):
     # send first message here :)
     ownerUsername = bot.get_username_from_user_id(owner)
     userInfo = bot.get_user_info(owner)['biography']
-    #message = 'Hi ' + ownerUsername+ '. I am Jermy and work for NIR, an advertising agency that specializes in helping fitness trainers like yourself attract more clients. \n \n When I came across your profile and was impressed by your expertise and experience in the fitness industry. I believe that our agency can help you reach a wider audience and attract more clients through targeted advertising campaigns. Please let me know if you are interested for further discussion!'
-    message = askGPT('write a message telling about this agency to a person with username ' + str(ownerUsername) + ' and bio as follows ' + str(userInfo) ) 
+    message = 'Hi ' + ownerUsername+ '. ---'
+    # TODO message = askGPT('write a message telling about this agency to a person with username ' + str(ownerUsername) + ' and bio as follows ' + str(userInfo) ) 
     print(ownerUsername + '\n \n' + message)
     bot.send_message(message, ownerUsername)
 
@@ -104,7 +99,7 @@ def runOwner(owner):
 
 
 def forValidOwners():
-    tag = ['fitness', 'gym', 'health']
+    
     posts = getPosts(tag)
     vOwners = validatedOwners(posts)
 
@@ -117,7 +112,6 @@ def start():
         forValidOwners()
         time.sleep(delay)
 
-start()
 
 # -------- DIVIDER ( Not using anything from here currently, sms/email stuff ) -------
 '''
